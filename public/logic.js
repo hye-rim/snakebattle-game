@@ -168,6 +168,7 @@ function aiPick(st, who, level, rand = Math.random) {
     for (const c of safe) { const sc = distToFood(st, blocked, c.nx, c.ny) + rand() * 1.5; if (sc < bs) { bs = sc; best = c; } }
     return best.d;
   }
+  if (rand() < 0.04) return safe[Math.floor(rand() * safe.length)].d;      // 어려움도 가끔은 틈을 보인다 (사람이 이길 수 있게)
   const oh = o.body[0];
   const oppNext = new Set();
   if (o.alive) for (let d = 0; d < 4; d++) if (d !== (o.dir + 2) % 4) oppNext.add(cellKey(oh.x + DX[d], oh.y + DY[d]));
